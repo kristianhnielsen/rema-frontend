@@ -1,9 +1,3 @@
-import {
-  getCurrentPrice,
-  getLowestPrice,
-  getAveragePrice,
-  //   getDaysCampaignedInYearCount,
-} from "@/app/product/[id]/utils";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Product, ProductPriceHistory } from "@/types/api";
@@ -13,12 +7,9 @@ export default function ProductCard({
   priceHistory,
   product,
 }: {
-  product: Product;
   priceHistory: ProductPriceHistory;
+  product: Product;
 }) {
-  const currentPrice = getCurrentPrice(priceHistory);
-  const lowestPrice = getLowestPrice(priceHistory);
-  const averagePrice = getAveragePrice(priceHistory);
   return (
     <Card>
       <CardHeader>
@@ -40,9 +31,9 @@ export default function ProductCard({
             titel="Department"
             detail={product.department}
           />
-          <Detail titel="Current Price" detail={currentPrice} />
-          <Detail titel="Lowest Price" detail={lowestPrice} />
-          <Detail titel="Average Price" detail={averagePrice} />
+          <Detail titel="Current Price" detail={priceHistory.current_price} />
+          <Detail titel="Lowest Price" detail={priceHistory.lowest_price} />
+          <Detail titel="Average Price" detail={priceHistory.avg_price} />
         </div>
       </CardContent>
     </Card>
