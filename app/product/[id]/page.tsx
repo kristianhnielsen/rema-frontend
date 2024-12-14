@@ -1,4 +1,4 @@
-import { fetchProducts, fetchProductPrices } from "@/lib/api";
+import { fetchProducts, fetchProductPrices, fetchProduct } from "@/lib/api";
 import { ProductPriceHistory } from "@/types/api";
 import PriceHistoryChart from "@/components/PriceHistoryChart";
 import { getPriceEntries } from "./utils";
@@ -16,14 +16,13 @@ export default async function ProductPage({
 }: {
   params: { id: string };
 }) {
-  const products = await fetchProducts();
-  const product = await products.find(
-    (product) => product.id.toString() === params.id
-  );
+  const { id } = await params;
+  const product = await fetchProduct(parseInt(id));
   const priceHistory: ProductPriceHistory = await fetchProductPrices(
-    parseInt(params.id)
+    parseInt(id)
   );
 
+  console.log(product);
   if (!product) {
     return <div>Product not found</div>;
   }
