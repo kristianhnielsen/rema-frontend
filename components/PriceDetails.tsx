@@ -18,7 +18,7 @@ export default function ProductCard({
       <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="aspect-square max-w-40 lg:max-w-60 overflow-hidden rounded-lg bg-white">
           <Image
-            src={product.img}
+            src={product.image}
             alt={product.name}
             width={300}
             height={300}
@@ -29,7 +29,7 @@ export default function ProductCard({
           <Detail
             className="col-span-3"
             titel="Department"
-            detail={product.department}
+            detail={product.department_name}
           />
           <Detail titel="Current Price" detail={priceHistory.current_price} />
           <Detail titel="Lowest Price" detail={priceHistory.lowest_price} />

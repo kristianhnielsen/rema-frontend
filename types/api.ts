@@ -1,8 +1,19 @@
 export type Product = {
-  id: number;
   name: string;
-  department: string;
-  img: string;
+  id: number;
+  underline: string;
+  description: string | null;
+  image: string;
+  is_self_scale_item: boolean;
+  is_available_in_all_stores: boolean;
+  department_name: string;
+  updated: string;
+  age_limit: number | null;
+  info: string;
+  temperature_zone: string | null;
+  is_weight_item: boolean;
+  is_batch_item: boolean;
+  department_id: number;
 };
 
 export type PriceDetails = {
