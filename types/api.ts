@@ -5,8 +5,6 @@ export type Product = {
   img: string;
 };
 
-export type ProductList = Product[];
-
 export type PriceDetails = {
   price: number;
   is_advertised: boolean;
@@ -25,4 +23,9 @@ export type ProductPriceHistory = {
   current_price: number;
   lowest_price: number;
   price_on_date: PriceOnDate;
+};
+
+export type Department = {
+  name: string;
+  id: number;
 };
