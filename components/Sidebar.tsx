@@ -39,7 +39,7 @@ export async function AppSidebar() {
               {aplhabeticallySortedDepartments.map((department) => (
                 <SidebarMenuItem key={department.id}>
                   <SidebarMenuButton asChild>
-                    <Link href={`department/${department.id}`}>
+                    <Link href={`/department/${department.id}`}>
                       <span>{department.name}</span>
                     </Link>
                   </SidebarMenuButton>
