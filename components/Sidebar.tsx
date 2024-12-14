@@ -13,6 +13,9 @@ import Link from "next/link";
 
 export async function AppSidebar() {
   const departments = await fetchDepartments();
+  const aplhabeticallySortedDepartments = departments.sort((a, b) =>
+    a.name.localeCompare(b.name)
+  );
 
   return (
     <Sidebar>
@@ -33,7 +36,7 @@ export async function AppSidebar() {
           <SidebarGroupLabel>Departments</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {departments.map((department) => (
+              {aplhabeticallySortedDepartments.map((department) => (
                 <SidebarMenuItem key={department.id}>
                   <SidebarMenuButton asChild>
                     <Link href={`department/${department.id}`}>
