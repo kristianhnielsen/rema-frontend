@@ -8,7 +8,7 @@ const ITEMS_PER_PAGE = 20;
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = await searchParams;
   const page = typeof params.page === "string" ? parseInt(params.page, 10) : 1;

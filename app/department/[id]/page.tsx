@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 export default async function DepartmentPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
   const products: Product[] = await fetchDepartmentProducts(parseInt(id));
