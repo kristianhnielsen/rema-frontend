@@ -22,7 +22,6 @@ export default async function ProductPage({
     parseInt(id)
   );
 
-  console.log(product);
   if (!product) {
     return <div>Product not found</div>;
   }
