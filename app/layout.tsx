@@ -10,9 +10,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <AppSidebar />
           <main>
             <div className="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-semibold text-gray-900 mb-6 border-b-4">
-                Products
-              </h1>
               {children}
             </div>
           </main>

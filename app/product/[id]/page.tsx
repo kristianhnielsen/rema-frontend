@@ -3,6 +3,7 @@ import { ProductPriceHistory } from "@/types/api";
 import PriceHistoryChart from "@/components/PriceHistoryChart";
 import { getPriceEntries } from "./utils";
 import PriceDetails from "@/components/PriceDetails";
+import PageTitle from "@/components/PageTitle";
 
 export async function generateStaticParams() {
   const products = await fetchProducts();
@@ -34,9 +35,12 @@ export default async function ProductPage({
   }));
 
   return (
-    <div className="space-y-8">
-      <PriceDetails product={product} priceHistory={priceHistory} />
-      <PriceHistoryChart chartData={chartData} />
-    </div>
+    <>
+      <PageTitle>{product.name.toUpperCase()}</PageTitle>
+      <div className="space-y-8">
+        <PriceDetails product={product} priceHistory={priceHistory} />
+        <PriceHistoryChart chartData={chartData} />
+      </div>
+    </>
   );
 }
