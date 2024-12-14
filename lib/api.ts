@@ -13,6 +13,16 @@ export async function fetchProducts(
   return response.json();
 }
 
+export async function fetchProduct(id: number): Promise<Product> {
+  const response = await fetch(
+    `https://rema-fastapi.onrender.com/product/${id}`
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch product");
+  }
+  return response.json();
+}
+
 export async function fetchProductsCount(): Promise<number> {
   const response = await fetch(
     "https://rema-fastapi.onrender.com/product/count"
@@ -40,9 +50,6 @@ export async function fetchDepartments(): Promise<Department[]> {
   if (!response.ok) {
     throw new Error("Failed to fetch departments");
   }
-  // const a = response.json();
-  // console.log(a);
-  // return a;
   return response.json();
 }
 
