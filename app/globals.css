@@ -81,6 +81,14 @@ body {
 @layer base {
   * {
     @apply border-border;
+    --rema-primary-color: 215, 62%, 29%;
+    --rema-primary-hover-color: 211, 100%, 19%;
+    --rema-secondary-color: 220, 86%, 54%;
+    --rema-secondary-hover-color: 217, 100%, 42%;
+    --rema-tertiary-color: 228, 63%, 97%;
+    --rema-tertiary-hover-color: 228, 15%, 87%;
+    --rema-cta-color: 220, 86%, 54%;
+    --rema-cta-hover-color: 217, 100%, 42%;
   }
   body {
     @apply bg-background text-foreground;
