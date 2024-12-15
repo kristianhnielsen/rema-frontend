@@ -33,6 +33,20 @@ export async function fetchProductsCount(): Promise<number> {
   return response.json();
 }
 
+export async function fetchDepartmentProductsCount(
+  department_id: number
+): Promise<number> {
+  const response = await fetch(
+    `https://rema-fastapi.onrender.com/department/${department_id}/count`
+  );
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch products count in department ${department_id}`
+    );
+  }
+  return response.json();
+}
+
 export async function fetchProductPrices(
   productId: number
 ): Promise<ProductPriceHistory> {
@@ -54,10 +68,12 @@ export async function fetchDepartments(): Promise<Department[]> {
 }
 
 export async function fetchDepartmentProducts(
-  department_id: number
+  department_id: number,
+  offset: number = 0,
+  limit: number = 20
 ): Promise<Product[]> {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/department/${department_id}`
+    `https://rema-fastapi.onrender.com/department/${department_id}/?offset=${offset}&limit=${limit}`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch products from department");

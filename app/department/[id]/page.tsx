@@ -1,6 +1,11 @@
 import PageTitle from "@/components/PageTitle";
+import Pagination from "@/components/Pagination";
 import ProductCard from "@/components/ProductCard";
-import { fetchDepartmentProducts, fetchDepartments } from "@/lib/api";
+import {
+  fetchDepartmentProducts,
+  fetchDepartmentProductsCount,
+  fetchDepartments,
+} from "@/lib/api";
 import { Product } from "@/types/api";
 
 export async function generateStaticParams() {
@@ -12,11 +17,25 @@ export async function generateStaticParams() {
 
 export default async function DepartmentPage({
   params,
+  searchParams,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; page: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { id } = await params;
-  const products: Product[] = await fetchDepartmentProducts(parseInt(id));
+  const { page } = await searchParams;
+  const ITEMS_PER_PAGE = 20;
+  const pageNum = typeof page === "string" ? parseInt(page, 10) : 1;
+  const offset = (pageNum - 1) * ITEMS_PER_PAGE;
+  const totalProducts = await fetchDepartmentProductsCount(parseInt(id));
+  const totalPages = Math.ceil(totalProducts / ITEMS_PER_PAGE);
+
+  const products: Product[] = await fetchDepartmentProducts(
+    parseInt(id),
+    offset,
+    ITEMS_PER_PAGE
+  );
+
   const aplhabeticallySortedProducts = products.sort((a, b) =>
     a.name.localeCompare(b.name)
   );
@@ -31,6 +50,11 @@ export default async function DepartmentPage({
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
+        <Pagination
+          currentPage={pageNum}
+          totalPages={totalPages}
+          baseUrl={`/department/${id}`}
+        />
       </>
     );
   }
