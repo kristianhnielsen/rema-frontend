@@ -21,19 +21,19 @@ export async function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>General</SidebarGroupLabel>
+          <SidebarGroupLabel>Generelt</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href={"/"}>All Products</Link>
+                  <Link href={"/"}>Alle produkter</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Departments</SidebarGroupLabel>
+          <SidebarGroupLabel>afdelinger</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {aplhabeticallySortedDepartments.map((department) => (
