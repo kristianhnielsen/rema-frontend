@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/sidebar";
 import { fetchDepartments } from "@/lib/api";
 import Link from "next/link";
-import { SheetTitle } from "./ui/sheet";
 
 export async function AppSidebar() {
   const departments = await fetchDepartments();
@@ -20,7 +19,6 @@ export async function AppSidebar() {
 
   return (
     <Sidebar>
-      <SheetTitle className="sr-only">Sidebar navigation</SheetTitle>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>General</SidebarGroupLabel>
