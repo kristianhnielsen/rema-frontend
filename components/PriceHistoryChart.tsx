@@ -1,4 +1,5 @@
 "use client";
+import React, { useState, useMemo } from "react";
 import {
   ResponsiveContainer,
   LineChart,
@@ -9,66 +10,118 @@ import {
 } from "recharts";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
+import { Button } from "./ui/button";
 
-const getMonthlyTicks = (
-  chartData: {
-    date: string;
-    price: number;
-  }[]
-) => {
-  const uniqueMonths = new Map();
-  chartData.forEach((item) => {
-    const monthKey = new Date(item.date).toISOString().slice(0, 7); // Format as YYYY-MM
-    if (!uniqueMonths.has(monthKey)) {
-      uniqueMonths.set(monthKey, item.date); // Save the original date
-    }
-  });
-  return Array.from(uniqueMonths.values());
+interface ChartDataPoint {
+  date: string;
+  price: number;
+}
+
+type Duration = 1 | 3 | 6 | 12;
+
+const formatDate = (date: string, duration: Duration): string => {
+  const d = new Date(date);
+  if (duration <= 3) {
+    return d.toLocaleDateString("da-DK", { month: "short", day: "numeric" });
+  } else if (duration <= 12) {
+    return d.toLocaleDateString("da-DK", { month: "short", year: "2-digit" });
+  } else {
+    return d.toLocaleDateString("da-DK", { month: "short", year: "numeric" });
+  }
 };
 
-export default function ProductCard({
-  chartData,
-}: {
-  chartData: {
-    date: string;
-    price: number;
-  }[];
-}) {
+interface CustomTickProps {
+  x?: number;
+  y?: number;
+  payload?: {
+    value: string;
+  };
+  duration: Duration;
+}
+
+const CustomTick: React.FC<CustomTickProps> = ({ x, y, payload, duration }) => {
+  if (payload == null || x == null || y == null) {
+    return null;
+  }
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text
+        x={0}
+        y={0}
+        dy={16}
+        textAnchor="middle"
+        fill="#666"
+        transform="rotate(-35)"
+        className="text-xs sm:text-sm"
+      >
+        {formatDate(payload.value, duration)}
+      </text>
+    </g>
+  );
+};
+
+const filterDataByDuration = (
+  data: ChartDataPoint[],
+  months: Duration
+): ChartDataPoint[] => {
+  const cutoffDate = new Date();
+  cutoffDate.setMonth(cutoffDate.getMonth() - months);
+  return data.filter((item) => new Date(item.date) >= cutoffDate);
+};
+
+interface ProductCardProps {
+  chartData: ChartDataPoint[];
+}
+
+export default function ProductCard({ chartData }: ProductCardProps) {
+  const [selectedDuration, setSelectedDuration] = useState<Duration>(3);
+  const filteredChartData = useMemo(
+    () => filterDataByDuration(chartData, selectedDuration),
+    [chartData, selectedDuration]
+  );
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Price History</CardTitle>
+        <CardTitle className="text-2xl text-center">Pris historik</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0 md:p-6">
+        <div className="flex justify-evenly md:justify-normal space-x-2 mb-4">
+          {[1, 3, 6, 12].map((duration) => (
+            <Button
+              key={duration}
+              variant={selectedDuration === duration ? "default" : "outline"}
+              onClick={() => setSelectedDuration(duration as Duration)}
+            >
+              {duration === 12 ? "1 år" : `${duration} mnd`}
+            </Button>
+          ))}
+        </div>
         <ChartContainer
           config={{
             price: {
-              label: "Price",
+              label: "Pris",
               color: "hsl(var(--chart-1))",
             },
           }}
           className="min-h-[200px]"
         >
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData}>
+            <LineChart data={filteredChartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis
                 dataKey="date"
-                ticks={getMonthlyTicks(chartData)}
-                tickFormatter={(value) =>
-                  new Date(value).toLocaleString("default", {
-                    month: "short",
-                    year: "2-digit",
-                  })
-                }
+                interval={"equidistantPreserveStart"}
+                tick={<CustomTick duration={selectedDuration} />}
+                padding={{ left: 10, right: 10 }}
               />
-              <YAxis />
+              <YAxis tickFormatter={(value: number) => `${value.toFixed(2)}`} />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Line
                 type="monotone"
                 dataKey="price"
                 stroke="var(--color-price)"
-                name="Price"
+                name="Pris (kr)"
                 dot={false}
               />
             </LineChart>

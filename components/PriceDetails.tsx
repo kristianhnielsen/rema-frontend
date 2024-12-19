@@ -25,12 +25,12 @@ export default function ProductCard({
         <div className="grid grid-cols-3 gap-2">
           <Detail
             className="col-span-3"
-            titel="Department"
+            titel="Afdeling"
             detail={product.department_name}
           />
-          <Detail titel="Current Price" detail={priceHistory.current_price} />
-          <Detail titel="Lowest Price" detail={priceHistory.lowest_price} />
-          <Detail titel="Average Price" detail={priceHistory.avg_price} />
+          <Detail titel="Nuværende pris" detail={priceHistory.current_price} />
+          <Detail titel="Laveste pris" detail={priceHistory.lowest_price} />
+          <Detail titel="Gns. pris" detail={priceHistory.avg_price} />
         </div>
       </CardContent>
     </Card>
@@ -47,9 +47,14 @@ export function Detail({
   className?: string;
 }) {
   return (
-    <Card className={twMerge("grid place-items-center", className)}>
+    <Card
+      className={twMerge(
+        "flex flex-col justify-between items-center",
+        className
+      )}
+    >
       <CardHeader className="p-2">
-        <CardTitle className="text-lg text-wrap text-center">{titel}</CardTitle>
+        <CardTitle className="text-wrap text-center">{titel}</CardTitle>
       </CardHeader>
       <CardContent className="p-2">
         <p className="text-xl">{detail}</p>

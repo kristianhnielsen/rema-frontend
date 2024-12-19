@@ -24,7 +24,7 @@ export default async function ProductPage({
   );
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div>Varen kunne ikke findes</div>;
   }
 
   const priceEntries = getPriceEntries(priceHistory);
