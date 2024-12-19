@@ -13,7 +13,7 @@ export default function Pagination({
   baseUrl,
 }: PaginationProps) {
   return (
-    <div className="flex justify-center space-x-2 mt-8">
+    <div className="flex justify-center items-center space-x-2 mt-8">
       {currentPage > 1 && (
         <Link href={`${baseUrl}?page=${currentPage - 1}`} passHref>
           <Button variant="outline">Previous</Button>
