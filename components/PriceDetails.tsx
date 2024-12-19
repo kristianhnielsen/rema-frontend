@@ -12,10 +12,7 @@ export default function ProductCard({
 }) {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-3xl">{product.name}</CardTitle>
-      </CardHeader>
-      <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <CardContent className="grid grid-cols-1 md:grid-cols-2 justify-items-center p-6 gap-4">
         <div className="aspect-square max-w-40 lg:max-w-60 overflow-hidden rounded-lg bg-white">
           <Image
             src={product.image}
@@ -51,10 +48,10 @@ export function Detail({
 }) {
   return (
     <Card className={twMerge("grid place-items-center", className)}>
-      <CardHeader>
-        <CardTitle className="text-lg text-wrap">{titel}</CardTitle>
+      <CardHeader className="p-2">
+        <CardTitle className="text-lg text-wrap text-center">{titel}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-2">
         <p className="text-xl">{detail}</p>
       </CardContent>
     </Card>
