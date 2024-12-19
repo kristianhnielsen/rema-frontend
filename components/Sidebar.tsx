@@ -33,7 +33,7 @@ export async function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>afdelinger</SidebarGroupLabel>
+          <SidebarGroupLabel>Afdelinger</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {aplhabeticallySortedDepartments.map((department) => (
