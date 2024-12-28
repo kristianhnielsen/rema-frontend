@@ -65,7 +65,7 @@ export default async function DiscountPage() {
             {department.department_name}
           </h2>
 
-          <div className="flex flex-wrap justify-around lg:justify-normal gap-2 md:gap-8">
+          <div className="flex flex-wrap justify-around lg:justify-normal gap-16">
             {department.deals.map((product) => (
               <DiscountProductCard key={product.product_id} product={product} />
             ))}
@@ -94,7 +94,7 @@ async function DiscountProductsSection({
         {title}
       </h2>
 
-      <div className="flex flex-wrap justify-around lg:justify-normal gap-2 md:gap-8">
+      <div className="flex flex-wrap justify-around lg:justify-normal gap-16">
         {products.map((product) => (
           <DiscountProductCard key={product.product_id} product={product} />
         ))}
