@@ -25,24 +25,24 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         )}
       </div>
-      <h3 className="mt-4 md:text-lg font-bold text-rema-primary text-center">
+      <h3 className="md:text-lg font-bold text-rema-primary text-center">
         {product.product_name}
       </h3>
-      <div className="grid gap-2  font-semibold">
+      <div className="grid gap-2 font-semibold">
         <Card className="flex flex-col justify-between text-center gap-1 p-2 w-full">
           {product.advertised_price} kr
         </Card>
-        <div className="flex justify-center gap-2">
+        <div className="flex justify-center text-sm gap-2">
           {product.difference_amount == 0 ? (
-            <Card className="w-full p-2 content-center text-center">
+            <Card className="w-full p-2 content-center font-medium text-center">
               <span>Ny vare / Første tilbud</span>
             </Card>
           ) : (
             <>
-              <Card className="flex text-rema-primary text-xs justify-center flex-col text-center p-2 w-full">
+              <Card className="flex text-rema-primary justify-center flex-col text-center p-2 w-full">
                 <span>-{product.difference_amount} kr</span>
               </Card>
-              <Card className="flex flex-col justify-center text-xs text-center p-2 w-full text-red-500">
+              <Card className="flex flex-col justify-center text-center p-2 w-full text-red-500">
                 <span>{product.difference_percent}%</span>
               </Card>
             </>
