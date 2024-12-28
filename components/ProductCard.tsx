@@ -8,7 +8,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <Link href={`/product/${product.id}`} className="group">
+    <Link href={`/produkt/${product.id}`} className="group">
       <div className="aspect-square w-full overflow-hidden rounded-2xl xl:aspect-w-7 xl:aspect-h-8 shadow-sm group-hover:-translate-y-2 transition-all group-hover:shadow-lg">
         {product.image && (
           <Image

@@ -10,7 +10,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
-      href={`/product/${product.product_id}`}
+      href={`/produkt/${product.product_id}`}
       className="group max-w-40 grid gap-1"
     >
       <div className="aspect-square w-full overflow-hidden rounded-2xl xl:aspect-w-7 xl:aspect-h-8 shadow-sm group-hover:-translate-y-2 transition-all group-hover:shadow-lg">
