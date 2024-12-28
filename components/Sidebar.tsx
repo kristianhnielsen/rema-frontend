@@ -29,6 +29,11 @@ export async function AppSidebar() {
                   <Link href={"/"}>Alle produkter</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href={"/tilbud"}>Tilbud</Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

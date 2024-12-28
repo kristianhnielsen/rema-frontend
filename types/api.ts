@@ -40,3 +40,24 @@ export type Department = {
   name: string;
   id: number;
 };
+
+export type Deal = {
+  product_id: number;
+  product_name: string;
+  image: string;
+  advertised_price: number;
+  regular_price: number;
+  difference_amount: number;
+  difference_percent: number;
+};
+
+export type DiscountDepartment = {
+  avg_price: number;
+  min_price: number;
+  max_price: number;
+  avg_difference_amount: number;
+  avg_difference_percent: number;
+  department_name: string;
+  department_id: number;
+  deals: Deal[];
+};

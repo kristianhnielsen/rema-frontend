@@ -80,3 +80,13 @@ export async function fetchDepartmentProducts(
   }
   return response.json();
 }
+
+export async function fetchDepartmentDiscounts() {
+  const response = await fetch(
+    "https://rema-fastapi.onrender.com/discount/departments"
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch department deals");
+  }
+  return response.json();
+}

@@ -5,11 +5,11 @@ import RemaLogo from "@/components/RemaLogo";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
+    <html className="scroll-smooth scroll-pt-48">
       <body>
-        <SidebarProvider className="block md:flex">
+        <SidebarProvider>
           <AppSidebar />
-          <div className="max-w-7xl px-4 pb-6 sm:px-6 lg:px-8">
+          <div className="px-4 pb-6 sm:px-6 lg:px-8 w-full">
             <header className="flex justify-between sticky top-0 bg-white py-4 z-50 items-center gap-4 border-b-4 border-rema-primary">
               <div className="flex gap-4 w-full items-center">
                 <RemaLogo />
@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <SidebarTrigger className="md:hidden [&_svg]:size-full size-12 bg-transparent [&_svg]:stroke-rema-primary" />
             </header>
             <main>
-              <div className="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mr-7 md:mx-0 py-12 sm:px-6 lg:px-8">
                 {children}
               </div>
             </main>
