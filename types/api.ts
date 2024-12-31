@@ -61,3 +61,18 @@ export type DiscountDepartment = {
   department_id: number;
   deals: Deal[];
 };
+
+export type PriceMetrics = {
+  department_name: string;
+  date: string;
+  median_price: number;
+  min_price: number;
+  max_price: number;
+  price_volatility: number; // Can be 0 if there's no volatility
+};
+
+export type PriceMetricsResponse = {
+  department_id: number;
+  department_name: string;
+  price_on_date: PriceMetrics[];
+};
