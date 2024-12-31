@@ -21,7 +21,6 @@ export async function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Generelt</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -32,6 +31,11 @@ export async function AppSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link href={"/tilbud"}>Tilbud</Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href={"/statistik"}>Statistik og Trends</Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
