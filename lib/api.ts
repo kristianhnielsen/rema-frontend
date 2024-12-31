@@ -90,3 +90,14 @@ export async function fetchDepartmentDiscounts() {
   }
   return response.json();
 }
+
+export async function fetchDepartmentMetrics() {
+  const response = await fetch(
+    "https://rema-fastapi.onrender.com/department/metrics"
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch department metrics");
+  }
+  return response.json();
+}
