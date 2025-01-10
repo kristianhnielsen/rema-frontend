@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex gap-4 w-full items-center">
                 <RemaLogo />
                 <h1 className="text-lg md:text-3xl font-semibold leading-tight">
-                  Rema 1000 Pris Data
+                  Rema Data
                 </h1>
               </div>
               <SidebarTrigger className="md:hidden [&_svg]:size-full size-12 bg-transparent [&_svg]:stroke-rema-primary" />
