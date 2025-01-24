@@ -5,11 +5,9 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { fetchDepartments } from "@/lib/api";
-import Link from "next/link";
+import SidebarLink from "./SidebarLink";
 
 export async function AppSidebar() {
   const departments = await fetchDepartments();
@@ -23,21 +21,9 @@ export async function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href={"/"}>Alle produkter</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href={"/tilbud"}>Tilbud</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link href={"/statistik"}>Statistik og Trends</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              <SidebarLink href="/">Alle Produkter</SidebarLink>
+              <SidebarLink href="/tilbud">Tilbud</SidebarLink>
+              <SidebarLink href="/trends">Trends</SidebarLink>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -46,13 +32,12 @@ export async function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {aplhabeticallySortedDepartments.map((department) => (
-                <SidebarMenuItem key={department.id}>
-                  <SidebarMenuButton asChild>
-                    <Link href={`/afdeling/${department.id}`}>
-                      <span>{department.name}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                <SidebarLink
+                  key={department.id}
+                  href={`/afdeling/${department.id}`}
+                >
+                  <span>{department.name}</span>
+                </SidebarLink>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
