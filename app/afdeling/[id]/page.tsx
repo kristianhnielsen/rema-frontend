@@ -50,7 +50,7 @@ export default async function DepartmentPage({
         <Pagination
           currentPage={pageNum}
           totalPages={totalPages}
-          baseUrl={`/department/${id}`}
+          baseUrl={`/afdeling/${id}`}
         />
       </>
     );
