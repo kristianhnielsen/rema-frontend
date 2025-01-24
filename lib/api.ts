@@ -81,12 +81,33 @@ export async function fetchDepartmentProducts(
   return response.json();
 }
 
-export async function fetchDepartmentDiscounts() {
+export async function fetchDepartmentDiscounts(department_id: number) {
   const response = await fetch(
-    "https://rema-fastapi.onrender.com/discount/departments"
+    `https://rema-fastapi.onrender.com/discount/departments/${department_id}`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch department deals");
+  }
+  return response.json();
+}
+
+export async function fetchTop10Discounts() {
+  const response = await fetch(
+    `https://rema-fastapi.onrender.com/discount/top-10-discounts`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch top 10 discounted deals");
+  }
+  return response.json();
+}
+export async function fetchUnderHalfPriceDiscounts() {
+  const response = await fetch(
+    `https://rema-fastapi.onrender.com/discount/under-50-percent`
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch deals under half price");
   }
   return response.json();
 }
