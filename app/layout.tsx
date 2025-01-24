@@ -7,6 +7,9 @@ import Link from "next/link";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html className="scroll-smooth scroll-pt-48">
+      <head>
+        <link rel="icon" href="/favicon.svg" sizes="any" />
+      </head>
       <body>
         <SidebarProvider>
           <AppSidebar />
