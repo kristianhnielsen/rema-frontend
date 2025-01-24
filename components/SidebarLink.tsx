@@ -14,19 +14,23 @@ export default function SidebarLink({
   href: string;
   children: React.ReactNode;
 }) {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, isMobile } = useSidebar();
 
   return (
     <SidebarMenuItem>
       <SidebarMenuButton asChild>
-        <Link
-          href={href}
-          onClick={() => {
-            toggleSidebar();
-          }}
-        >
-          {children}
-        </Link>
+        {isMobile ? (
+          <Link
+            href={href}
+            onClick={() => {
+              toggleSidebar();
+            }}
+          >
+            {children}
+          </Link>
+        ) : (
+          <Link href={href}>{children}</Link>
+        )}
       </SidebarMenuButton>
     </SidebarMenuItem>
   );
