@@ -1,11 +1,14 @@
 import { Department, Product, ProductPriceHistory } from "@/types/api";
 
+const revalidationCooldown = 3600;
+
 export async function fetchProducts(
   offset: number = 0,
   limit: number = 20
 ): Promise<Product[]> {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/product/?offset=${offset}&limit=${limit}`
+    `https://rema-fastapi.onrender.com/product/?offset=${offset}&limit=${limit}`,
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error("Failed to fetch products");
@@ -15,7 +18,8 @@ export async function fetchProducts(
 
 export async function fetchProduct(id: number): Promise<Product> {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/product/${id}`
+    `https://rema-fastapi.onrender.com/product/${id}`,
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error("Failed to fetch product");
@@ -25,7 +29,8 @@ export async function fetchProduct(id: number): Promise<Product> {
 
 export async function fetchProductsCount(): Promise<number> {
   const response = await fetch(
-    "https://rema-fastapi.onrender.com/product/count"
+    "https://rema-fastapi.onrender.com/product/count",
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error("Failed to fetch products count");
@@ -37,7 +42,8 @@ export async function fetchDepartmentProductsCount(
   department_id: number
 ): Promise<number> {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/department/${department_id}/count`
+    `https://rema-fastapi.onrender.com/department/${department_id}/count`,
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error(
@@ -51,7 +57,8 @@ export async function fetchProductPrices(
   productId: number
 ): Promise<ProductPriceHistory> {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/prices/${productId}`
+    `https://rema-fastapi.onrender.com/prices/${productId}`,
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error("Failed to fetch product prices");
@@ -60,7 +67,9 @@ export async function fetchProductPrices(
 }
 
 export async function fetchDepartments(): Promise<Department[]> {
-  const response = await fetch(`https://rema-fastapi.onrender.com/department`);
+  const response = await fetch(`https://rema-fastapi.onrender.com/department`, {
+    next: { revalidate: revalidationCooldown },
+  });
   if (!response.ok) {
     throw new Error("Failed to fetch departments");
   }
@@ -73,7 +82,8 @@ export async function fetchDepartmentProducts(
   limit: number = 20
 ): Promise<Product[]> {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/department/${department_id}/?offset=${offset}&limit=${limit}`
+    `https://rema-fastapi.onrender.com/department/${department_id}/?offset=${offset}&limit=${limit}`,
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error("Failed to fetch products from department");
@@ -83,7 +93,8 @@ export async function fetchDepartmentProducts(
 
 export async function fetchDepartmentDiscounts(department_id: number) {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/discount/departments/${department_id}`
+    `https://rema-fastapi.onrender.com/discount/departments/${department_id}`,
+    { next: { revalidate: revalidationCooldown } }
   );
   if (!response.ok) {
     throw new Error("Failed to fetch department deals");
@@ -93,7 +104,8 @@ export async function fetchDepartmentDiscounts(department_id: number) {
 
 export async function fetchTop10Discounts() {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/discount/top-10-discounts`
+    `https://rema-fastapi.onrender.com/discount/top-10-discounts`,
+    { next: { revalidate: revalidationCooldown } }
   );
 
   if (!response.ok) {
@@ -103,7 +115,8 @@ export async function fetchTop10Discounts() {
 }
 export async function fetchUnderHalfPriceDiscounts() {
   const response = await fetch(
-    `https://rema-fastapi.onrender.com/discount/under-50-percent`
+    `https://rema-fastapi.onrender.com/discount/under-50-percent`,
+    { next: { revalidate: revalidationCooldown } }
   );
 
   if (!response.ok) {
@@ -114,7 +127,8 @@ export async function fetchUnderHalfPriceDiscounts() {
 
 export async function fetchDepartmentMetrics() {
   const response = await fetch(
-    "https://rema-fastapi.onrender.com/department/metrics"
+    "https://rema-fastapi.onrender.com/department/metrics",
+    { next: { revalidate: revalidationCooldown } }
   );
 
   if (!response.ok) {
