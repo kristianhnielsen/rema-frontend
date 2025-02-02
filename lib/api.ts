@@ -105,7 +105,7 @@ export async function fetchDepartmentDiscounts(department_id: number) {
 export async function fetchTop10Discounts() {
   const response = await fetch(
     `https://rema-fastapi.onrender.com/discount/top-10-discounts`,
-    { next: { revalidate: revalidationCooldown } }
+    { cache: "no-store" }
   );
 
   if (!response.ok) {
@@ -116,7 +116,7 @@ export async function fetchTop10Discounts() {
 export async function fetchUnderHalfPriceDiscounts() {
   const response = await fetch(
     `https://rema-fastapi.onrender.com/discount/under-50-percent`,
-    { next: { revalidate: revalidationCooldown } }
+    { cache: "no-store" }
   );
 
   if (!response.ok) {
