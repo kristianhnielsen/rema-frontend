@@ -2,14 +2,21 @@ import PageTitle from "@/components/PageTitle";
 import { fetchUnderHalfPriceDiscounts } from "@/lib/api";
 import DiscountProductsSection from "../DiscountProductSection";
 import { Deal } from "@/types/api";
+import { SkeletonCard } from "@/app/loading";
+import { Suspense } from "react";
 
-export default async function DiscountPage() {
+async function DiscountProducts() {
   const products: Deal[] = await fetchUnderHalfPriceDiscounts();
+  return <DiscountProductsSection products={products} />;
+}
 
+export default function DiscountPage() {
   return (
     <>
       <PageTitle>Tilbud - Under Halv Pris</PageTitle>
-      <DiscountProductsSection products={products} />
+      <Suspense fallback={<SkeletonCard />}>
+        <DiscountProducts />
+      </Suspense>
     </>
   );
 }

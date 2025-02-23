@@ -1,7 +1,7 @@
 import DiscountProductCard from "@/components/DiscountProductCard";
 import { Deal } from "@/types/api";
 
-export default async function DiscountProductsSection({
+export default function DiscountProductsSection({
   products,
   title,
   headerId,

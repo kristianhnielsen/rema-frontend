@@ -39,9 +39,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             </Card>
           ) : (
             <>
-              <Card className="flex text-rema-primary justify-center flex-col text-center p-2 w-full">
-                <span>-{product.difference_amount} kr</span>
-              </Card>
               <Card className="flex flex-col justify-center text-center p-2 w-full text-red-500">
                 <span>{product.difference_percent}%</span>
               </Card>
