@@ -27,7 +27,15 @@ export async function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarLink href="/">Alle Produkter</SidebarLink>
+              <SidebarLink href="/">Hjem</SidebarLink>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarLink href="/produkt">Alle Produkter</SidebarLink>
               <CollapsibleMenu title="Produkter i afdelinger">
                 {aplhabeticallySortedDepartments.map((department) => (
                   <SidebarLink
