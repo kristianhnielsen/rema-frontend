@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 export default async function Logo({
   size,
   className,
@@ -13,12 +15,10 @@ export default async function Logo({
 async function LogoLarge(className?: string) {
   return (
     <svg
-      width="183"
-      height="25"
       viewBox="0 0 183 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={twMerge(["w-44", className])}
     >
       <mask
         id="mask0_2_36"
