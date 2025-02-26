@@ -16,6 +16,17 @@ export async function fetchProducts(
   return response.json();
 }
 
+export async function searchProducts(query?: string): Promise<Product[]> {
+  const response = await fetch(
+    `https://rema-fastapi.onrender.com/product/search/?query=${query}`,
+    { next: { revalidate: revalidationCooldown } }
+  );
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  return response.json();
+}
+
 export async function fetchProduct(id: number): Promise<Product> {
   const response = await fetch(
     `https://rema-fastapi.onrender.com/product/${id}`,
