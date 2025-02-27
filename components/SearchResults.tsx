@@ -24,15 +24,15 @@ export default function SearchResults() {
 
   return (
     <section className="grid justify-items-center gap-4">
-      {products.length !== 0 && (
-        <SearchResultInfo productsNum={products.length} />
-      )}
-      {products.length !== 0 && (
-        <div className="flex max-h-80 max-w-xl flex-col overflow-y-scroll rounded-lg border ">
-          {products.map((product) => (
-            <ResultItem key={product.id} product={product} />
-          ))}
-        </div>
+      {products.length !== 0 && query.length >= 3 && (
+        <>
+          <SearchResultInfo productsNum={products.length} />
+          <div className="flex max-h-80 max-w-xl flex-col overflow-y-scroll rounded-lg border ">
+            {products.map((product) => (
+              <ResultItem key={product.id} product={product} />
+            ))}
+          </div>
+        </>
       )}
     </section>
   );

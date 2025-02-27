@@ -17,8 +17,8 @@ export default function ProductSearch() {
       params.delete("query");
       setErrorMsg(null);
     } else if (searchInputText.trim().length < 3) {
+      params.set("query", searchInputText.trim());
       setErrorMsg("Søgetekst skal minimum være 3 tegn");
-      return;
     } else {
       params.set("query", searchInputText.trim());
       setErrorMsg(null);
